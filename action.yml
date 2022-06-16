@@ -1,0 +1,11 @@
+name: 'Set up Elvish'
+description: 'Set up Elvish'
+author: 'xiaq'
+inputs:
+  elvish-version:
+    description: The version of Elvish to install.
+    required: false
+    default: v0.18.0
+runs:
+  using: 'node16'
+  main: 'main.mjs'
