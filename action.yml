@@ -1,5 +1,5 @@
-name: 'Set up Elvish'
-description: 'Set up Elvish'
+name: Set up Elvish
+description: Download an Elvish binary and add it to PATH
 author: 'xiaq'
 inputs:
   elvish-version:

@@ -1,6 +1,6 @@
 # setup-elvish
 
-This action downloads the Elvish binary and adds it to `PATH`.
+This action downloads an Elvish binary and adds it to `PATH`.
 
 Example of using this in a job ([complete
 example](https://github.com/elves/setup-elvish/blob/main/.github/workflows/test.yml)):
