@@ -1,4 +1,4 @@
-name: Set up Elvish
+name: Setup Elvish
 description: Download an Elvish binary and add it to PATH
 author: 'xiaq'
 inputs:
