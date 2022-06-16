@@ -1,4 +1,4 @@
-name: Test Using Elvish as Default
+name: Test Using as Default Shell
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     name: Test Action
     runs-on: ubuntu-latest
     steps:
-    - uses: ${{ github.repository }}@main
+    - uses: elves/setup-elvish@main
     - name: Run with Elvish
       shell: elvish {0}
       run: |

@@ -13,7 +13,7 @@ jobs:
         elvish-version: [0.18.0, HEAD]
     runs-on: ${{ matrix.os }}-latest
     steps:
-    - uses: ${{ github.repository }}@main
+    - uses: elves/setup-elvish@main
       with:
         elvish-version: ${{ matrix.elvish-version }}
     - name: Run with Elvish
