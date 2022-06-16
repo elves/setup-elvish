@@ -7,7 +7,7 @@ example](https://github.com/elves/setup-elvish/blob/main/.github/workflows/test.
 
 ```yaml
 steps:
-  - uses: elves/setup-elvish@main
+  - uses: elves/setup-elvish@v1
     with:
       elvish-version: 0.18.0
   - name: Run something with Elvish
