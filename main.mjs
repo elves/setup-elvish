@@ -8,6 +8,10 @@ async function main() {
     const arch = archMap[process.arch] || process.arch;
     const platform = platformMap[process.platform] || process.platform;
     const urlBase = `https://dl.elv.sh/${platform}-${arch}/elvish-${version}`;
+    // https://github.com/elves/elvish/commit/deec3c06b2a7d4ba9c4ac01edc90bdca7844c143
+    // change the binary name within the archive to be just "elvish" or
+    // "elvish.exe"; before that the name was elvish-${version} or
+    // elvish-${version}.exe. Handle both cases.
     if (platform === 'windows') {
         await run('pwsh', '-c',
             `
@@ -17,14 +21,22 @@ async function main() {
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
             Expand-Archive elvish.zip -DestinationPath .
             rm elvish.zip
-            New-Item -ItemType SymbolicLink -Path elvish.exe -Target elvish-${version}.exe
+            if (Test-Path elvish.exe -PathType leaf) {
+              New-Item -ItemType SymbolicLink -Path elvish-${version}.exe -Target elvish.exe
+            } else {
+              New-Item -ItemType SymbolicLink -Path elvish.exe -Target elvish-${version}.exe
+            }
             `);
     } else {
         await run('sh', '-c',
             `
             cd /usr/local/bin
             curl -o- ${urlBase}.tar.gz | tar xz
-            ln -sf elvish-${version} elvish
+            if test -f elvish; then
+              ln -sf elvish elvish-${version}
+            else
+              ln -sf elvish-${version} elvish
+            fi
             `);
     }
 }

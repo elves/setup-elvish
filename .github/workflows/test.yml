@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu, macos, windows]
-        elvish-version: [0.18.0, HEAD]
+        elvish-version: [0.20.1, HEAD]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: elves/setup-elvish@main
@@ -18,5 +18,9 @@ jobs:
         elvish-version: ${{ matrix.elvish-version }}
     - name: Run with Elvish
       shell: elvish {0}
+      run: |
+        echo This is Elvish $version
+    - name: Run with Elvish with explicit version
+      shell: elvish-${{ matrix.elvish-version }} {0}
       run: |
         echo This is Elvish $version
