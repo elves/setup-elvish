@@ -21,7 +21,7 @@ async function main() {
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
             Expand-Archive elvish.zip -DestinationPath .
             rm elvish.zip
-            if (!Test-Path elvish.exe -PathType leaf) {
+            if (!(Test-Path elvish.exe -PathType leaf)) {
               Rename-Item -Path elvish-${version}.exe -NewName elvish.exe
             }
             `);
