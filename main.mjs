@@ -21,10 +21,8 @@ async function main() {
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
             Expand-Archive elvish.zip -DestinationPath .
             rm elvish.zip
-            if (Test-Path elvish.exe -PathType leaf) {
-              New-Item -ItemType SymbolicLink -Path elvish-${version}.exe -Target elvish.exe
-            } else {
-              New-Item -ItemType SymbolicLink -Path elvish.exe -Target elvish-${version}.exe
+            if (!Test-Path elvish.exe -PathType leaf) {
+              Rename-Item -Path elvish-${version}.exe -NewName elvish.exe
             }
             `);
     } else {
@@ -32,10 +30,8 @@ async function main() {
             `
             cd /usr/local/bin
             curl -o- ${urlBase}.tar.gz | tar xz
-            if test -f elvish; then
-              ln -sf elvish elvish-${version}
-            else
-              ln -sf elvish-${version} elvish
+            if ! test -f elvish; then
+              mv elvish-${version} elvish
             fi
             `);
     }
