@@ -20,7 +20,5 @@ jobs:
       shell: elvish {0}
       run: |
         echo This is Elvish $version
-    - name: Run with Elvish with explicit version
-      shell: elvish-${{ matrix.elvish-version }} {0}
-      run: |
-        echo This is Elvish $version
+        elvish -c 'Can be used as an external command too'
+        elvish-${{ matrix.elvish-version }} -c 'Also available with explicit version'
