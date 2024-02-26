@@ -9,7 +9,7 @@ example](https://github.com/elves/setup-elvish/blob/main/.github/workflows/test.
 steps:
   - uses: elves/setup-elvish@v1
     with:
-      elvish-version: 0.18.0
+      elvish-version: 0.20.1
   - name: Run something with Elvish
     shell: elvish {0}
     run: |
